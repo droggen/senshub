@@ -1,0 +1,81 @@
+<h3 align="center">SensHub - Data recorder/server/labeler for frame-based sensors</h3>
+
+
+<h4>Purpose</h4>
+
+SensHub is a data acquisition, server, and labeler software for frame-based sensors.
+
+<h4>Key features</h4>
+
+<ul>
+<li>Connection to any serial (RFCOMM, USB or physical serial port) frame-based sensor
+</li>
+<li>File storage of individual sensor data
+</li>
+<li>Three online merge methods to combine data from multiple sensor into a single data stream (most recent sample, rate-controlled read-out, and window-based resampling)
+</li>
+<li>Offline merge to combine data from multiple sensor into a single data stream after the recording
+</li>
+<li>TCP server to access sensor data remotely
+</li>
+<li>Keyboard labeling to mark relevant events in the sensor data streams
+</li>
+<li>Exhaustive online visualization of the connection and incoming data status, and of the buffers for online data merge.
+</li>
+</ul>
+ 
+<h4>Typical usage pattern</h4>
+A typical workflow comprises the following steps:
+<ol>
+  <li><b>Define work directory:</b> Define the work directory. File path are relative to the work directory.
+  </li>
+  <li><b>Data sources set-up:</b> Define the sensors to acquire in the left pane. See <a href="#source">setting-up data sources</a>.
+  </li>
+  <li><b>Merge output set-up:</b> For each merge methods indicate the file in which the data is stored, or the port on which the data is served (if none are specified the merger is inactive).
+  </li>
+  <li><b>Merge parameters set-up:</b> Define the merge sample rate (all mergers), the latency (for RC and TS merger) and the rate-control parameters (for the RC merger).
+  </li>
+  <li><b>Labeling:</b> Define in which file the label data must be stored.
+  </li>
+  <li><b>File/TCP parameters:</b> Define wether NAN are allowed (not-a-number, when no data is received or a sensor is detected), alternatively repeat last sample.
+  </li>
+  <li><b>Start/stop recording:</b>
+  </li>
+  <li><b>Resample and merge:</b> once the reference points allow a satisfying alignment the signals can be resampled and merged in a single file, or the reference points and link equations can be exported to use in another program. See section <a href="#resample">Resample</a>.
+  </li>
+</ol>
+
+<h4><a name="source"></a>Setting-up data sources</h4>
+<p>
+Data sources are specified by the following:
+<ul>
+<li>Device, of the format <i>/path/to/device/or/comportnumber:bitrate</i>
+</li>
+<li>Device frame format. See <a href="#frameformat">Frame format</a>.
+</li>
+<li>File (relative to the working directory) in which to store the sensor data.
+</li>
+<li>Packet counter: none, 8 bit, or 16 bit
+</li>
+<li>Channel on which the packet counter is available
+</li>
+<li>Number of packets to regenerate when a discontinuity is detected in the packet counter sequence. Regenerated packets are marked as 'not a number' but are useful for the online merge functionality. Select it to be approximately the input sample rate multiplied by 1-5 (i.e. packet regenerated when data is loss for less than 1-5 seconds). Longer data loss are considered to be long losses and are treated as disconnections.
+</li>
+</ul>
+
+<h4><a name="frameformat"></a>Frame format</h4>
+The format of the data source is either text or binary, and is described by a binary format string.
+An empty binary format string means that the incoming data is plain text. Each line represents one sample and data are separated by one of space, tabulation, colon or semicolon.
+Binary format consists of a HEADER followed by raw binary data.
+To specify the data format and header the following format string is used: <i>HEADER;C0FMT C1FMT C2FMT....[;checksum]</i>
+<ul>
+<li>HEADER: plain text header indicating start of data</li>
+<li>CxFMT: Format of the data channel x. The format is <i>[-]c|s|S|i|I|b<n>|B<n></i> where c,s|S,i|I,b|B indicate an 8-bit, 16-bit, 32-bit, or n-bit channel.
+s, i, b are little-endian. S, I and B are big-endian. The optional - prefix indicates a signed data channel.</li>
+<li>checksum: optional checksum. format is: x, f or F. f/F is a 16-bit Fletcher-16 checksum (little/big endian). x is an 8-bit longitudinal redundancy check.
+</li>
+</ul>
+
+<h4>License</h4>
+
+This software is licensed under the terms of the GPL v.2 license.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Main ProjectPath="D:/wearlab/prog/nthub/debug" NANFile="1" NANTCP="0"/>
+    <Devices>
+        <Device DevType="ser" Dev="com37" SpdPort="19200" Format="DX3;ccsss-s-s-s" File="file1" Port="0" PktCtr="0" PktChan="0" PktRegen="100"/>
+        <Device DevType="ser" Dev="com38" SpdPort="19200" Format="DX3;ccsss-s-s-s" File="file2" Port="0" PktCtr="0" PktChan="0" PktRegen="100"/>
+    </Devices>
+    <LMerger File="merger_l.dat" Port="1000"/>
+    <RCMerger File="merger_rc.dat" Port="1001"/>
+    <TSMerger File="merger_ts.dat" Port="1002"/>
+    <OMerger File="merger_o.dat" Extension=".fill"/>
+    <MergerConfiguration SampleRate="100" Latency="1" Kp="0.001" Ki="0.0001" Kd="0"/>
+    <Label File="label.dat"/>
+</Configuration>

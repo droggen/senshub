@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>i_disc.bmp</file>
+        <file>i_int.bmp</file>
+        <file>i_cnc.bmp</file>
+        <file>i_cncsre.bmp</file>
+        <file>ic.bmp</file>
+        <file>help.html</file>
+        <file>ic2.png</file>
+        <file>ic3.png</file>
+    </qresource>
+</RCC>
