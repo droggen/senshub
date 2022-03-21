@@ -47,7 +47,7 @@ double PreciseTimer::QueryTimer()
 
 
 //************************************
-#ifdef LINUX
+#ifdef __linux__
 
 double PreciseTimer::QueryTimer()
 {

@@ -85,7 +85,7 @@ int ConsoleInit(void)
 #endif
 
 
-#ifdef LINUX
+#ifdef __linux__
 
 int ConsoleInit(void)
 {

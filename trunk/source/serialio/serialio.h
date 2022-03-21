@@ -43,7 +43,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <string>
 #endif
 
-#ifdef PLATFORM_LINUX
+//#ifdef PLATFORM_LINUX
+#ifdef __linux__
 //xxx#include <io.h>
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -52,13 +53,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <unistd.h>
 #include <termios.h>
 #include <string.h>
+#include <sys/ioctl.h>
 
-#include <cmdline.h>
+//#include <cmdline.h>
 #include <stddef.h>
 #include <dirent.h>
 #include <iostream>
 #include <malloc.h>
-#include <Devices.h>
+//#include <Devices.h>
 #endif
 
 
@@ -73,7 +75,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define SERIALIO_BITRATE_115200		CBR_115200
 #endif
 
-#ifdef PLATFORM_LINUX
+//#ifdef PLATFORM_LINUX
+#ifdef __linux__
 #define SERIALIO_BITRATE_1200		B1200
 #define SERIALIO_BITRATE_2400		B2400
 #define SERIALIO_BITRATE_9600		B9600
@@ -88,7 +91,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
    #define SERIALIO_HANDLE HANDLE
 #endif
 
-#ifdef PLATFORM_LINUX
+//#ifdef PLATFORM_LINUX
+#ifdef __linux__
    #define SERIALIO_HANDLE int
 #endif
 

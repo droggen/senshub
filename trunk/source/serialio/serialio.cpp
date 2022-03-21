@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "serialio.h"
 
-//#include <sys/ioctl.h>
+
 
 /******************************************************************************
 * PLATFORM_MINGW   PLATFORM_MINGW   PLATFORM_MINGW   PLATFORM_MINGW   PLATFORM_
@@ -182,7 +182,8 @@ int SerialReadChar(HANDLE hCom, char *c)
 /******************************************************************************
 * PLATFORM_LINUX   PLATFORM_LINUX   PLATFORM_LINUX   PLATFORM_LINUX   PLATFORM_
 ******************************************************************************/
-#ifdef PLATFORM_LINUX
+//#ifdef PLATFORM_LINUX
+#ifdef __linux__
 
 int isDevicesAvailable(char *strDir, char *strKey)
 {
@@ -217,12 +218,13 @@ int isDevicesAvailable(char *strDir, char *strKey)
 	return 0;
 }
 
-int SerialOpen(int port,SERIALIO_HANDLE baudrate,int timeout) 
+//int SerialOpen(int port,SERIALIO_HANDLE baudrate,int timeout)
+int SerialOpen(std::string device,SERIALIO_HANDLE baudrate,int timeout)
 {
 	char strDir[] = "/dev/";
 	char strKey[10];
 	
-	sprintf(strKey,"ttyUSB%d",port);
+	/*sprintf(strKey,"ttyUSB%d",port);
 
 	if (port>=10 && port<100)	// TODO: change port selection / creation!!
 	{
@@ -236,7 +238,7 @@ int SerialOpen(int port,SERIALIO_HANDLE baudrate,int timeout)
 		unsigned int ui_port = port -100;
 		sprintf(strKey,"ttyS%d",ui_port);
 		printf("serialIO::SerialOpen Try to open  %s\n",strKey);
-	}	
+    }	*/
 	
 	if (isDevicesAvailable(strDir, strKey) == 0)
 		return 0;

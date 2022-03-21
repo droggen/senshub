@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <QKeyEvent>
 #include <QMutex>
 #include "precisetimer.h"
-#include "merger.h"
+#include "Merger.h"
 
 #include "BaseReader.h"
 

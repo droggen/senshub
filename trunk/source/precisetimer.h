@@ -39,7 +39,7 @@ long QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency);
 #include <wtypes.h>
 
 #endif
-#ifdef LINUX
+#ifdef __linux__
 #include <stdio.h>
 #include <sys/time.h>
 #include <signal.h>
